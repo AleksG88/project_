@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import (QApplication, QFileDialog, QInputDialog,
                              QLabel, QLineEdit, QMenu, QVBoxLayout,
                              QWidget)
 
-DEFAULT_NAME = "Рик"
+DEFAULT_NAME = "Рик Сначес"
 DEFAULT_IMAGE = "images/rick.png"
 SETTINGS_FILE = "settings.json"
 IMAGE_SIZE = 200
@@ -153,3 +153,4 @@ if __name__ == "__main__":
     character.quit_requested.connect(app.quit)
     character.show()
     sys.exit(app.exec())
+    

@@ -50,3 +50,4 @@ class Command:
 if __name__ == "__main__":
     # быстрая проверка: откроет папку проекта
     Command("Тест", CommandType.OPEN_FOLDER, os.getcwd()).execute()
+    

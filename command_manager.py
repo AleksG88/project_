@@ -60,3 +60,4 @@ if __name__ == "__main__":
                                 "C:\\"))
     for cmd in manager.get_commands():
         print(cmd.name, "-", cmd.command_type.value, "-", cmd.options)
+        
