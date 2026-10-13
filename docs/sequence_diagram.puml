@@ -1,0 +1,31 @@
+@startuml
+title Диаграмма последовательности «Выполнение команды»
+
+actor Пользователь as User
+participant "Character" as Ch
+participant "RunCommandWindow" as RW
+participant "CommandManager" as CM
+participant "Command" as C
+participant "Операционная система" as OS
+
+User -> Ch : нажимает на персонажа
+Ch -> Ch : show_menu()
+User -> Ch : выбирает «Выполнить команду»
+Ch -> RW : открывает окно
+RW -> CM : get_commands()
+CM --> RW : список команд
+RW --> User : показывает список команд
+User -> RW : выбирает команду, нажимает «Выполнить»
+RW -> CM : run_command(name)
+CM -> C : execute()
+alt OPEN_FOLDER
+  C -> OS : открыть папку (путь из options)
+else OPEN_FILE
+  C -> OS : открыть файл (путь из options)
+else SHUTDOWN
+  C -> OS : выключить компьютер
+end
+C --> CM : готово
+CM --> RW : команда выполнена
+RW --> User : сообщение об успехе
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+title Диаграмма классов «Десктопный помощник»
+
+skinparam classAttributeIconSize 0
+
+enum CommandType {
+  OPEN_FOLDER
+  OPEN_FILE
+  SHUTDOWN
+}
+
+class Command {
+  - name: str
+  - command_type: CommandType
+  - options: str
+  + execute(): None
+}
+
+class CommandManager {
+  - commands: list
+  - file_path: str
+  + add_command(command: Command): None
+  + remove_command(name: str): None
+  + get_commands(): list
+  + run_command(name: str): None
+  + save(): None
+  + load(): None
+}
+
+class Character {
+  - name: str
+  - image_path: str
+  + change_image(): None
+  + change_name(new_name: str): None
+  + show_menu(): None
+}
+
+class TrayIcon {
+  + show_character(): None
+  + hide_character(): None
+  + quit_app(): None
+}
+
+class CreateCommandWindow {
+  + save_command(): None
+}
+
+class RunCommandWindow {
+  + run_selected(): None
+}
+
+CommandManager "1" *-- "0..*" Command : хранит
+Command --> CommandType : имеет тип
+TrayIcon --> Character : сворачивает / разворачивает
+Character ..> CreateCommandWindow : открывает
+Character ..> RunCommandWindow : открывает
+CreateCommandWindow --> CommandManager : добавляет команду
+RunCommandWindow --> CommandManager : запускает команду
+@enduml
